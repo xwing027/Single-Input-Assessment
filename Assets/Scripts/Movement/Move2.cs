@@ -4,67 +4,23 @@ using UnityEngine;
 
 public class Move2 : MonoBehaviour
 {
-    CharacterController controller;
-    Vector3 moveVector;
-    float verticalVelocity = 0.0f;
-    public float gravity = 12.0f;
-    private float animationDuration = 2.0f;
+    public float transitionSpeed = 2f;
+    public float speed;
 
-    float speed = 5.0f;
-    public float xSpeed = 5.0f;
-    float startTime;
-    Vector3 position;
-    Vector3 moveToPos;
-
-    void Start()
+    public void Update()
     {
-        controller = GetComponent<CharacterController>();
-        startTime = Time.time;
-    }
-
-    void Update()
-    {
-        if (Time.time - startTime < animationDuration)
+        if (Input.GetButtonDown("Fire1"))
         {
-            controller.Move(Vector3.forward * speed * Time.deltaTime);
-            return;
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+
+            /*float x = Input.GetAxis("Horizontal") * 15.0f;
+            float z = Input.GetAxis("Vertical") * 50.0f;
+
+            CharacterController sisyphus = GetComponent<CharacterController>();
+            sisyphus.transform.position = Vector3.Lerp(sisyphus.transform.position, new Vector3(0, 0, 1), Time.deltaTime * transitionSpeed);*/
         }
+        
 
-        moveVector = Vector3.zero;
-
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -1f;
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
-
-        //X - Left & Right Movement CONTROLLED HERE
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(position.x, transform.position.y, transform.position.z), xSpeed * Time.deltaTime);
-
-        if (Input.GetKey(KeyCode.W) && (transform.position.x == 0.0f || transform.position.x == 1.0f || transform.position.x == 2.0f || transform.position.x == -1.0f || transform.position.x == -2.0f))
-        {
-            if (Input.mousePosition.x > (Screen.width / 2) && transform.position.x < 2.0f)
-            {
-                position.x = (transform.position.x + 1.0f);
-            }
-
-            else if (Input.mousePosition.x < (Screen.width / 2) && transform.position.x > -2.0f)
-            {
-                position.x = (transform.position.x - 1.0f);
-            }
-        }
-
-        moveVector.y = verticalVelocity;
-        moveVector.z = speed;
-
-        controller.Move(moveVector * Time.deltaTime);
-    }
-
-    public void SetSpeed(float modifier)
-    {
-        speed = 5.0f + modifier;
+        
     }
 }

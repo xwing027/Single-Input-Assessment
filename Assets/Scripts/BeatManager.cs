@@ -5,15 +5,76 @@ using UnityEngine.UI;
 
 public class BeatManager : MonoBehaviour
 {
-    float curBPM;
+    #region Variables
+    float curBPM = 100;
     int beatCount;
     float BPS;
     float zoneBeat;
     bool isCounting = false;
+    float tickTimer;
+    float timerWindow = .25f;
+
+    bool hit;
     
     public Text uiBeatCount;
 
-    //WaitForSeconds delay = new WaitForSeconds(1.67f);
+    float failCounter;
+    #endregion
+
+    private void Start()
+    {
+        BPS = curBPM / 60;
+        tickTimer = -BPS/2;
+
+        //PlayerPrefs.Save();
+
+    }
+
+    private void Update()
+    {
+        tickTimer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Mathf.Abs(tickTimer) > timerWindow/2)
+            {
+                Debug.Log("Yay!");
+            }
+            else
+            {
+                Debug.Log("You were " + tickTimer + " seconds off.");                          
+            }
+            hit = true;
+        }
+        
+        if(tickTimer>= BPS/2)
+        {
+            if (!hit)
+            {
+                failCounter++;
+
+                if (failCounter >= 5)
+                {
+                    Missed();
+                }
+                if (failCounter < 5)
+                {
+                    Debug.Log("Bad!");
+                }
+            }
+            BPS = curBPM / 60;
+            tickTimer = -BPS/2;
+
+            hit = false;
+        }
+        uiBeatCount.text = (Mathf.Round(tickTimer * 100) / 100).ToString();
+    }
+
+    void Missed()
+    {
+        //if failed 5 times in a row
+        Debug.Log("End Game");
+    }
 
     public void HundredBeat()
     {
@@ -47,5 +108,5 @@ public class BeatManager : MonoBehaviour
                 yield return new WaitForSeconds(BPS);
             }
         }
-    }    
+    }
 }
