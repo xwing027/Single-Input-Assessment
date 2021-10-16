@@ -12,7 +12,7 @@ public class BeatManager : MonoBehaviour
     float zoneBeat;
     bool isCounting = false;
     float tickTimer;
-    float timerWindow = .25f;
+    float timerWindow = .2f;
 
     bool hit;
     
@@ -27,7 +27,6 @@ public class BeatManager : MonoBehaviour
         tickTimer = -BPS/2;
 
         //PlayerPrefs.Save();
-
     }
 
     private void Update()
