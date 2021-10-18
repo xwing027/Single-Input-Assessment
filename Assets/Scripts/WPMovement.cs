@@ -6,7 +6,7 @@ public class WPMovement : MonoBehaviour
 {
     public GameObject[] goal;
     public GameObject currentGoal;
-    int goalIndex = 0;
+    //int goalIndex = 0;
     public GameObject sisyphus;
 
     public void Start()
@@ -19,7 +19,7 @@ public class WPMovement : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("You have moved");
 
@@ -30,7 +30,7 @@ public class WPMovement : MonoBehaviour
 
     }
 
-    public void FindMove(GameObject goal)
+    /*public void FindMove(GameObject goal)
     {
         //find the goal
         float distance = Vector3.Distance(transform.position, goal.transform.position);
@@ -51,5 +51,5 @@ public class WPMovement : MonoBehaviour
         }
 
         currentGoal = goal[goalIndex];
-    }
+    }*/
 }

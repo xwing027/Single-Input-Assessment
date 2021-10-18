@@ -31,22 +31,44 @@ public class BeatManager : MonoBehaviour
 
     private void Update()
     {
+        //regulates the tick timer
         tickTimer += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //determines how far off 0 you are
             if (Mathf.Abs(tickTimer) > timerWindow/2)
             {
                 Debug.Log("Yay!");
+                hit = true;
             }
             else
             {
-                Debug.Log("You were " + tickTimer + " seconds off.");                          
+                Debug.Log("You were " + tickTimer + " seconds off.");
+                hit = false;
+                if (!hit) //if you fail to press on time
+                {
+                    failCounter++;
+
+                    if (failCounter >= 5) //if you miss 5 or more times
+                    {
+                        Missed(); //end
+                    }
+                    if (failCounter >= 1 && failCounter < 5) //if you miss under 5 times
+                    {
+                        Debug.Log("Bad!"); //still given a chance 
+                    }
+                }
             }
-            hit = true;
         }
-        
-        if(tickTimer>= BPS/2)
+
+        if (tickTimer >= BPS / 2)
+        {
+            BPS = curBPM / 60;
+            tickTimer = -BPS / 2;
+        }
+            
+        /*if (tickTimer >= BPS / 2)
         {
             if (!hit)
             {
@@ -56,16 +78,16 @@ public class BeatManager : MonoBehaviour
                 {
                     Missed();
                 }
-                if (failCounter < 5)
+                if (failCounter >= 1 && failCounter < 5)
                 {
                     Debug.Log("Bad!");
                 }
             }
             BPS = curBPM / 60;
-            tickTimer = -BPS/2;
+            tickTimer = -BPS / 2;
 
             hit = false;
-        }
+        }*/
         uiBeatCount.text = (Mathf.Round(tickTimer * 100) / 100).ToString();
     }
 
