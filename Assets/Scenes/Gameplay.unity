@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 35591188}
   m_Layer: 0
-  m_Name: Waypoints
+  m_Name: Terrain Sections
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,9 +363,9 @@ GameObject:
   - component: {fileID: 811616850}
   - component: {fileID: 811616849}
   m_Layer: 0
-  m_Name: WP
+  m_Name: Zone 1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -377,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811616847}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3445437, y: 18.584883, z: 1.2419338}
+  m_LocalPosition: {x: 26.655457, y: 18.584883, z: -20.758066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 35591188}
@@ -391,10 +391,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811616847}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &811616850
 MeshRenderer:
@@ -458,9 +458,9 @@ GameObject:
   - component: {fileID: 958407994}
   - component: {fileID: 958407993}
   m_Layer: 0
-  m_Name: WP (1)
+  m_Name: Zone 2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -472,7 +472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958407991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3445437, y: 18.584883, z: 18.241934}
+  m_LocalPosition: {x: 62.655457, y: 18.584883, z: -20.758066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 35591188}
@@ -486,10 +486,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958407991}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &958407994
 MeshRenderer:
@@ -616,13 +616,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.152714, y: 0.007640958, z: -0.001180768, w: 0.98824024}
-  m_LocalPosition: {x: 1.4066417, y: 4.637635, z: -11.118665}
+  m_LocalRotation: {x: 0.12800671, y: 0.49450794, z: -0.07390471, w: 0.85651284}
+  m_LocalPosition: {x: -6, y: 4.637635, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1452782560}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 17.569, y: 90.886, z: 0}
+  m_LocalEulerAnglesHint: {x: 17, y: 60, z: 0}
 --- !u!1 &1027568088
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,8 +942,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1611702780}
   - component: {fileID: 1611702779}
+  - component: {fileID: 1611702781}
   m_Layer: 0
-  m_Name: BeatManager
+  m_Name: Script Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -961,6 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d7dba225a4e0449995e1e54a719d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tickTimer: 0
   uiBeatCount: {fileID: 1651551736}
 --- !u!4 &1611702780
 Transform:
@@ -976,6 +978,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611702781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611702778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab19833d21f2554b8ed8ffff640d24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curBPM: 0
+  BPS: 0
+  beatCount: 0
 --- !u!1 &1631119742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,9 +1218,9 @@ GameObject:
   - component: {fileID: 2007804761}
   - component: {fileID: 2007804760}
   m_Layer: 0
-  m_Name: WP (2)
+  m_Name: Zone 3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1215,7 +1232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007804758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3445437, y: 18.584883, z: 42.241936}
+  m_LocalPosition: {x: 108.65546, y: 18.584883, z: -20.758066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 35591188}
@@ -1229,10 +1246,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007804758}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2007804761
 MeshRenderer:

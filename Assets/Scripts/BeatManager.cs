@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BeatManager : MonoBehaviour
 {
     #region Variables
-    float curBPM = 100;
-    int beatCount;
-    float BPS;
+    private BPMManager bpmManager;
+
     float zoneBeat;
-    bool isCounting = false;
-    float tickTimer;
-    float timerWindow = .2f;
+    //bool isCounting = false;
+    public float tickTimer;
+    float timerWindow = .2f; //sets the window for when to press, currently same window regardless of bpm
 
     bool hit;
-    
+
     public Text uiBeatCount;
 
     float failCounter;
@@ -23,8 +23,12 @@ public class BeatManager : MonoBehaviour
 
     private void Start()
     {
-        BPS = curBPM / 60;
-        tickTimer = -BPS/2;
+        bpmManager = GetComponent<BPMManager>();
+
+        bpmManager.BPS = bpmManager.curBPM / 60;
+        tickTimer = -bpmManager.BPS / 2;
+
+        bpmManager.HundredBeat();
 
         //PlayerPrefs.Save();
     }
@@ -34,100 +38,96 @@ public class BeatManager : MonoBehaviour
         //regulates the tick timer
         tickTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (tickTimer >= bpmManager.BPS / 2) //this sets up the timer with 0 as the middle 
         {
-            //determines how far off 0 you are
-            if (Mathf.Abs(tickTimer) > timerWindow/2)
-            {
-                Debug.Log("Yay!");
-                hit = true;
-            }
-            else
-            {
-                Debug.Log("You were " + tickTimer + " seconds off.");
-                hit = false;
-                if (!hit) //if you fail to press on time
-                {
-                    failCounter++;
-
-                    if (failCounter >= 5) //if you miss 5 or more times
-                    {
-                        Missed(); //end
-                    }
-                    if (failCounter >= 1 && failCounter < 5) //if you miss under 5 times
-                    {
-                        Debug.Log("Bad!"); //still given a chance 
-                    }
-                }
-            }
+            //bpmManager.BPS = bpmManager.curBPM / 60;
+            tickTimer = -bpmManager.BPS / 2;
         }
 
-        if (tickTimer >= BPS / 2)
-        {
-            BPS = curBPM / 60;
-            tickTimer = -BPS / 2;
-        }
-            
-        /*if (tickTimer >= BPS / 2)
+        uiBeatCount.text = (Mathf.Round(tickTimer * 100) / 100).ToString();
+
+        //determines how far off 0 you are
+        if (Mathf.Abs(tickTimer) > timerWindow / 2) //this is the window you have to press space
         {
             if (!hit)
             {
-                failCounter++;
-
-                if (failCounter >= 5)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Missed();
+                    Debug.Log("Yay!");
+                    hit = true;
                 }
-                if (failCounter >= 1 && failCounter < 5)
+                else
                 {
-                    Debug.Log("Bad!");
+                    //Debug.Log("You were " + tickTimer + " seconds off.");
+
+                    if (!hit) //if you fail to press on time
+                    {
+
+                    }
                 }
-            }
-            BPS = curBPM / 60;
-            tickTimer = -BPS / 2;
-
-            hit = false;
-        }*/
-        uiBeatCount.text = (Mathf.Round(tickTimer * 100) / 100).ToString();
-    }
-
-    void Missed()
-    {
-        //if failed 5 times in a row
-        Debug.Log("End Game");
-    }
-
-    public void HundredBeat()
-    {
-        curBPM = 100.0f;
-        BPS = curBPM / 60.0f;
-        Debug.Log(BPS);
-
-        beatCount = 0;
-
-        StartCoroutine("Count");
-    }
-
-    public IEnumerator Count()
-    {
-        isCounting = true;
-
-        while (isCounting)
-        {
-            if (beatCount < 4)
-            {
-                beatCount++;
-                Debug.Log(beatCount);
-                uiBeatCount.text = "Beat: " + beatCount;
-                yield return new WaitForSeconds(BPS);
-            }
-            if (beatCount == 4)
-            {
-                beatCount = 1;
-                Debug.Log(beatCount);
-                uiBeatCount.text = "Beat: " + beatCount;
-                yield return new WaitForSeconds(BPS);
             }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                hit = true;
+                Debug.Log("bad timing");
+                failCounter++;
+            }
+            if (tickTimer >= -bpmManager.BPS / 2)
+            {
+                if (hit == false)
+                {
+                    failCounter = 5;
+                    Debug.Log("miss");
+                }
+                hit = false;
+
+
+            }
+        }
+        if (failCounter >= 5) //if you miss 5 or more times
+        {
+            EndGame(); //end
+        }
     }
+        void EndGame()
+        {
+            //go to main menu
+            Debug.Log("End Game");
+            SceneManager.LoadScene(0);
+        }
+
+        /*public void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Zone"))
+            {
+                //currentZone = other.transform;
+            }
+        }
+
+        public IEnumerator Count()
+        {
+            isCounting = true;
+
+            while (isCounting)
+            {
+                if (bpmManager.beatCount < 4)
+                {
+                    bpmManager.beatCount++;
+                    Debug.Log(bpmManager.beatCount);
+                    uiBeatCount.text = "Beat: " + bpmManager.beatCount;
+                    yield return new WaitForSeconds(bpmManager.BPS);
+                }
+                if (bpmManager.beatCount == 4)
+                {
+                    bpmManager.beatCount = 1;
+                    Debug.Log(bpmManager.beatCount);
+                    uiBeatCount.text = "Beat: " + bpmManager.beatCount;
+                    yield return new WaitForSeconds(bpmManager.BPS);
+                }
+            }
+        }*/
+    
 }
