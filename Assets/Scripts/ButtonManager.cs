@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void Update()
+    public void Gameplay()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             SceneManager.LoadScene(1);
-        }
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WPMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public GameObject[] goal;
     public GameObject currentGoal;

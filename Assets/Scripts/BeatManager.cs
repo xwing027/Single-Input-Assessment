@@ -92,22 +92,22 @@ public class BeatManager : MonoBehaviour
             EndGame(); //end
         }
     }
-        void EndGame()
-        {
-            //go to main menu
-            Debug.Log("End Game");
-            SceneManager.LoadScene(0);
-        }
+    void EndGame()
+    {
+        //go to main menu
+        Debug.Log("End Game");
+        SceneManager.LoadScene(0);
+    }
 
-        /*public void OnCollisionEnter(Collision other)
+    public void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Zone1"))
         {
-            if (other.gameObject.CompareTag("Zone"))
-            {
-                //currentZone = other.transform;
-            }
+            bpmManager.OneTwentyBeat();
         }
+    }
 
-        public IEnumerator Count()
+        /*public IEnumerator Count()
         {
             isCounting = true;
 

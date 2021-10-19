@@ -23,7 +23,7 @@ public class BPMManager : MonoBehaviour
     {
         curBPM = 120.0f;
         BPS = curBPM / 60.0f;
-        Debug.Log(BPS);
+        Debug.Log("BPM is now 120");
 
         beatCount = 0;
     }

@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 811616849}
   m_Layer: 0
   m_Name: Zone 1
-  m_TagString: Untagged
+  m_TagString: Zone1
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 958407993}
   m_Layer: 0
   m_Name: Zone 2
-  m_TagString: Untagged
+  m_TagString: Zone2
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1219,7 +1219,7 @@ GameObject:
   - component: {fileID: 2007804760}
   m_Layer: 0
   m_Name: Zone 3
-  m_TagString: Untagged
+  m_TagString: Zone3
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
