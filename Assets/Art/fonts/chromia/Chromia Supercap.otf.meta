@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: fe7a294c86f78a245a0971412f51560d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Chromia Supercap
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c96241ec0b8fe3148b65ba9683d13855, type: 3}
+  - {fileID: 12800000, guid: 30d6adbfa8b975e4e87a540106d2ab35, type: 3}
+  - {fileID: 12800000, guid: 0c3f6ec2fe7f41b408d390eb7d804d4c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
