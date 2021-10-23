@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour
     void Paused()
     {
         isPaused = true;
-        Time.timeScale = 0;
+        Time.timeScale = 0; 
         pauseMenu.alpha = 1;
     }
 }

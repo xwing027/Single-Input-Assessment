@@ -9,17 +9,16 @@ public class BeatManager : MonoBehaviour
     #region Variables
     BPMManager bpmManager;
 
-    float zoneBeat;
-    public float tickTimer = 1.2f;
-    float timerWindow = 1.2f; //sets the window for when to press, currently same window regardless of bpm
+    public float tickTimer = 1.25f;
+    float timerWindow = 1.25f; //sets the window for when to press, currently same window regardless of bpm
 
     bool hit;
 
-    public Text uiSecCount;
     public Text timeDelay;
     public Text abilityDisplay;
     public Text stepDisplay;
     public Text scoreDisplay;
+    public Text uiSecCount;
 
     public float failCounter;
     float stepCounter;
@@ -34,9 +33,15 @@ public class BeatManager : MonoBehaviour
 
         bpmManager.BPS = bpmManager.curBPM / 60;
         tickTimer = -bpmManager.BPS / 2;
-        bpmManager.HundredBeat(); //set bpm to 100
-
-        //PlayerPrefs.Save();
+        if (bpmManager.isOneTwenty)
+        {
+            bpmManager.OneTwentyBeat();
+        }
+        else
+        {
+            bpmManager.HundredBeat();
+        }
+ //set bpm to 100
     }
 
     private void Update()
@@ -53,7 +58,7 @@ public class BeatManager : MonoBehaviour
             timeDelay.text = ""; //stop showing the countdown
             
             stepDisplay.text = "Steps: "+stepCounter;
-            scoreDisplay.text = "Score: " + score;
+            scoreDisplay.text = score.ToString();
 
             if (Input.GetKeyDown(KeyCode.Space)) //if you press space...
             {
@@ -67,7 +72,7 @@ public class BeatManager : MonoBehaviour
                 {
                     abilityDisplay.text = "Bad!"; //bad job :(
                     stepCounter++; //add to steps (for now)
-                    failCounter++; //add to fail counter - for some reason this doesnt work :/ tinker later...
+                    ++failCounter; //add to fail counter - for some reason this doesnt work :/ tinker later...
                     
                 }
                 hit = true;
@@ -79,20 +84,16 @@ public class BeatManager : MonoBehaviour
                 {
                     failCounter++; //add to your fail amount
                     score -= 5;
-
-                    if (failCounter >= 5) //if you fail above 4...
-                    {
-                        EndGame();
-                    }
-                    if (failCounter < 5) //if you fail below 4...
-                    {
-                        abilityDisplay.text = "Miss!"; //you miss!
-                    }
+                    abilityDisplay.text = "Miss!";
                 }
                 bpmManager.BPS = bpmManager.curBPM / 60; //sets the bpm (not entirely sure why this is needed but deleting it is bad so....)
                 tickTimer = -bpmManager.BPS / 2; //sets the tick timer to have 0 as the middle (again idk why i need it here but u cant delete it..)
 
                 hit = false;
+            }
+            if (failCounter >= 9) //if you fail above 8...
+            {
+                EndGame();
             }
             uiSecCount.text = (Mathf.Round(tickTimer * 100) / 100).ToString();
         }

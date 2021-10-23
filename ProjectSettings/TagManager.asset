@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Zone1
   - Zone2
-  - Zone3
   - End
+  - Zone0
   layers:
   - Default
   - TransparentFX

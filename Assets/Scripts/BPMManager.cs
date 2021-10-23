@@ -12,8 +12,8 @@ public class BPMManager : MonoBehaviour
     public int beatCount;
     bool isCounting = false;
     BeatManager beatManager;
-    public bool isHundred = false;
     public string speed;
+    public bool isOneTwenty = false;
 
     public Text uiBeatCount;
     public Text speedDisplay;
@@ -28,27 +28,35 @@ public class BPMManager : MonoBehaviour
 
     public void HundredBeat()
     {
-        speed = "Med";
+        if (!isOneTwenty)
+        {
+            speed = "Med";
 
-        curBPM = 100.0f;
-        BPS = curBPM / 60.0f;
-        Debug.Log(BPS);
-        speedDisplay.text = "Speed: "+speed;
+            curBPM = 100.0f;
+            BPS = curBPM / 60.0f;
+            Debug.Log(BPS);
+            speedDisplay.text = "Speed: " + speed;
 
-        beatCount = 0;
+            beatCount = 0;
 
-        StartCoroutine(Delay());
+            StartCoroutine(Delay());
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void OneTwentyBeat()
     {
+        speed = "Fast";
+        isOneTwenty = true;
         curBPM = 120.0f;
         BPS = curBPM / 60.0f;
+        speedDisplay.text = "Speed: " + speed;
         Debug.Log("BPM is now 120");
 
-        beatCount = 0;
-
-        StartCoroutine("Count");
+        StartCoroutine(Count(0f));
     }
 
     public IEnumerator Delay()

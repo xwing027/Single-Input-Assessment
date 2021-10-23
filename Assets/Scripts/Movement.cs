@@ -8,12 +8,14 @@ public class Movement : MonoBehaviour
     public GameObject[] goal;
     public GameObject currentGoal;
     public GameObject sisyphus;
+    [SerializeField]
+    public GameObject controller;
 
     public GameObject start;
    // public Rigidbody endRB;
     private Vector3 startPosition;
 
-    BeatManager beatManager;
+    //BeatManager beatManager;
     BPMManager bpmManager;
     #endregion
     
@@ -31,7 +33,6 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             currentGoal.transform.Translate(Vector3.forward);
-            Debug.Log("You have moved");
         }
         transform.position = Vector3.Lerp(transform.position,currentGoal.transform.position,.1f);
 
@@ -46,9 +47,27 @@ public class Movement : MonoBehaviour
             sisyphus.transform.position = startPosition; //reset sisyphus' position to the start
             currentGoal.transform.position = startPosition; //reset the goal pos to the start as well
         }
-        //if (other.gameObject.CompareTag("Zone1"))
-        //{
-            //bpmManager.OneTwentyBeat();
-        //}
+        if (other.gameObject.CompareTag("Zone1"))
+        {
+            controller.GetComponent<BPMManager>().speed = "Fast";
+            //controller.GetComponent<BPMManager>().isOneTwenty = true;
+            controller.GetComponent<BPMManager>().curBPM = 80.0f;
+            controller.GetComponent<BPMManager>().BPS = controller.GetComponent<BPMManager>().curBPM / 60.0f;
+            controller.GetComponent<BPMManager>().speedDisplay.text = "Speed: " + controller.GetComponent<BPMManager>().speed;
+        }
+        if (other.gameObject.CompareTag("Zone2"))
+        {
+            controller.GetComponent<BPMManager>().speed = "Slow";
+            controller.GetComponent<BPMManager>().curBPM = 120.0f;
+            controller.GetComponent<BPMManager>().BPS = controller.GetComponent<BPMManager>().curBPM / 60.0f;
+            controller.GetComponent<BPMManager>().speedDisplay.text = "Speed: " + controller.GetComponent<BPMManager>().speed;
+        }
+        if (other.gameObject.CompareTag("Zone0"))
+        {
+            controller.GetComponent<BPMManager>().speed = "Med";
+            controller.GetComponent<BPMManager>().curBPM = 100.0f;
+            controller.GetComponent<BPMManager>().BPS = controller.GetComponent<BPMManager>().curBPM / 60.0f;
+            controller.GetComponent<BPMManager>().speedDisplay.text = "Speed: " + controller.GetComponent<BPMManager>().speed;
+        }
     }
 }
