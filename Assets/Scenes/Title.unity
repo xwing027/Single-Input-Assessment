@@ -242,8 +242,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: 15}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 14.002, y: 8}
+  m_SizeDelta: {x: 386, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161239642
 MonoBehaviour:
@@ -552,6 +552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412744898}
   - component: {fileID: 412744897}
+  - component: {fileID: 412744899}
   m_Layer: 0
   m_Name: ButtonManager
   m_TagString: Untagged
@@ -586,6 +587,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &412744899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412744896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75d961bba36d574d93cecdd048bb41f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &572718448
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,10 +658,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -778,8 +791,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -56.5}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 14.002, y: -85}
+  m_SizeDelta: {x: 386, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872000793
 MonoBehaviour:
@@ -1034,10 +1047,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

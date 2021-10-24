@@ -11,9 +11,17 @@ public class BPMManager : MonoBehaviour
     public float BPS;
     public int beatCount;
     bool isCounting = false;
-    BeatManager beatManager;
+    
     public string speed;
     public bool isOneTwenty = false;
+
+    BeatManager beatManager;
+    public GameObject chonk;
+    public GameObject chonk2;
+    public GameObject chonk3;
+    public GameObject lanky;
+    public GameObject lanky2;
+    public GameObject spook;
 
     public Text uiBeatCount;
     public Text speedDisplay;
@@ -61,7 +69,7 @@ public class BPMManager : MonoBehaviour
 
     public IEnumerator Delay()
     {
-        yield return StartCoroutine(Count(3f));
+        yield return StartCoroutine(Count(25f));
     }
 
     public IEnumerator Count(float waitTime)
@@ -77,6 +85,12 @@ public class BPMManager : MonoBehaviour
                 Debug.Log(beatCount);
                 uiBeatCount.text = "Beat: " + beatCount;
                 claps.Play();
+                chonk.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                chonk2.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                chonk3.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                lanky2.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                spook.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                lanky.GetComponentInChildren<Animator>().SetTrigger("Clap");
                 yield return new WaitForSeconds(BPS);
             }
             if (beatCount == 4)
@@ -85,6 +99,12 @@ public class BPMManager : MonoBehaviour
                 Debug.Log(beatCount);
                 uiBeatCount.text = "Beat: " + beatCount;
                 claps.Play();
+                chonk.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                chonk2.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                chonk3.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                lanky2.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                spook.GetComponentInChildren<Animator>().SetTrigger("Clap");
+                lanky.GetComponentInChildren<Animator>().SetTrigger("Clap");
                 yield return new WaitForSeconds(BPS);
             }
         }

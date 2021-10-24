@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public float time = 3.0f;
 
     public void Gameplay()
     { 

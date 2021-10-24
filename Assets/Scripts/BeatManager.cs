@@ -18,13 +18,16 @@ public class BeatManager : MonoBehaviour
     public Text abilityDisplay;
     public Text stepDisplay;
     public Text scoreDisplay;
-    public Text uiSecCount;
+    public CanvasGroup story;
+    public CanvasGroup ending;
+    public Text failDisplay;
 
     public float failCounter;
     float stepCounter;
     public float score;
 
-    public float time = 3.0f; //this counts the delay before gameplay starts
+    public float time = 25.0f; //this counts the delay before gameplay starts
+    public float endTime;
     #endregion
 
     private void Start()
@@ -59,6 +62,7 @@ public class BeatManager : MonoBehaviour
             
             stepDisplay.text = "Steps: "+stepCounter;
             scoreDisplay.text = score.ToString();
+            failDisplay.text = "Fails: " +failCounter;
 
             if (Input.GetKeyDown(KeyCode.Space)) //if you press space...
             {
@@ -72,7 +76,7 @@ public class BeatManager : MonoBehaviour
                 {
                     abilityDisplay.text = "Bad!"; //bad job :(
                     stepCounter++; //add to steps (for now)
-                    ++failCounter; //add to fail counter - for some reason this doesnt work :/ tinker later...
+                    failCounter++;
                     
                 }
                 hit = true;
@@ -93,14 +97,20 @@ public class BeatManager : MonoBehaviour
             }
             if (failCounter >= 9) //if you fail above 8...
             {
-                EndGame();
+                    SceneManager.LoadScene(0);
             }
-            uiSecCount.text = (Mathf.Round(tickTimer * 100) / 100).ToString();
+        }
+        if (time >5)
+        {
+            story.alpha = 1;
+        }
+        if (time <5)
+        {
+            story.alpha = 0;
         }
     }
     public void EndGame()
     {
-        Debug.Log("End Game");
-        SceneManager.LoadScene(0);
+        
     }
 }
